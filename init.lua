@@ -18,7 +18,7 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
@@ -213,11 +213,17 @@ require('lazy').setup {
         gopls = {},
         pyright = {},
         rust_analyzer = {},
+        tsserver = {},
 
         lua_ls = {
           settings = {
             Lua = {
-              runtime = { version = 'LuaJIT' },
+              runtime = {
+                version = 'LuaJIT',
+              },
+              diagnostics = {
+                globals = { 'vim' },
+              },
               workspace = {
                 checkThirdParty = false,
                 library = {
