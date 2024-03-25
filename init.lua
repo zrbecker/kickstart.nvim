@@ -57,6 +57,15 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   'github/copilot.vim',
 
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = 'Copilot',
+  --   event = 'InsertEnter',
+  --   config = function()
+  --     require('copilot').setup {}
+  --   end,
+  -- },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -269,6 +278,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'goimports', 'gofmt' },
       },
     },
   },
@@ -289,12 +299,16 @@ require('lazy').setup {
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      -- 'zbirenbaum/copilot-cmp',
     },
     config = function()
       local cmp = require 'cmp'
 
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+
+      -- local copilot_cmp = require 'copilot_cmp'
+      -- copilot_cmp.setup {}
 
       cmp.setup {
         snippet = {
@@ -326,6 +340,7 @@ require('lazy').setup {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          -- { name = 'copilot' },
         },
       }
     end,
@@ -367,7 +382,7 @@ require('lazy').setup {
         ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
         auto_install = true,
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = false },
       }
     end,
   },
